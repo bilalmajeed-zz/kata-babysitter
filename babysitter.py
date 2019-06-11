@@ -1,14 +1,14 @@
 class Babysitter:
 	def __init__(self, start_time, end_time, family):
 		if start_time[-2:].upper() == "PM":
-			self.start_time = int(start_time[:-2]) + 12
+			self.start_time = int(start_time[:-5]) + 12
 		else:
-			self.start_time = int(start_time[:-2])
+			self.start_time = int(start_time[:-5])
 
 		if end_time[-2:].upper() == "PM":
-			self.end_time = int(end_time[:-2]) + 12
+			self.end_time = int(end_time[:-5]) + 12
 		else:
-			self.end_time = int(end_time[:-2])
+			self.end_time = int(end_time[:-5])
 
 		self.family = family.upper
 
