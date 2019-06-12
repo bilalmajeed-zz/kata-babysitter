@@ -57,7 +57,7 @@ class TestBabysitter(unittest.TestCase):
 
 	def test_that_the_correct_rate_is_calculated_when_family_A_is_selected(self):
 		babysitter = Babysitter("7:00PM", "11:00PM", "a")
-		self.assertEqual(babysitter.calculate_family_a_rate(), 60)
+		self.assertEqual(babysitter.calculate_rate(), 60)
 
 		babysitter = Babysitter("7:00PM", "2:00AM", "a")
-		self.assertEqual(babysitter.calculate_family_a_rate(), 120)
+		self.assertEqual(babysitter.calculate_rate(), 120)

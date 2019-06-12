@@ -1,5 +1,5 @@
 class Babysitter:
-	family_a_rates = ([23], [15, 20])
+	family_rates = [([23], [15, 20])]
 
 	def __init__(self, start_time, end_time, family):
 		if start_time[-2:].upper() == "PM":
@@ -33,9 +33,9 @@ class Babysitter:
 		return False
 
 	def is_family_valid(self):
-		return self.family.upper() == "A" \
-			or self.family.upper() == "B" \
-			or self.family.upper() == "C"	
+		return self.family == "A" \
+			or self.family == "B" \
+			or self.family == "C"	
 
 	def calculate_num_hrs(self, start, end):
 		if end > start:
@@ -44,15 +44,17 @@ class Babysitter:
 			return (24 - start) + end
 		return 0
 
-	def calculate_family_a_rate(self):
+	def calculate_rate(self):
+		if self.family == "A": rates = self.family_rates[0]
+
 		total = 0;
 
-		for i in range(len(self.family_a_rates[0])):
+		for i in range(len(rates[0])):
 			if i == 0:
-				hours = self.calculate_num_hrs(self.start_time, self.family_a_rates[0][i])
-				total += hours * self.family_a_rates[1][i]
+				hours = self.calculate_num_hrs(self.start_time, rates[0][i])
+				total += hours * rates[1][i]
 		
-		hours = self.calculate_num_hrs(self.family_a_rates[0][-1], self.end_time)
-		total += hours * self.family_a_rates[1][-1]
+		hours = self.calculate_num_hrs(rates[0][-1], self.end_time)
+		total += hours * rates[1][-1]
 
 		return total
