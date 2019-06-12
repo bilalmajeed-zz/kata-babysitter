@@ -4,6 +4,8 @@ class Babysitter:
 					'C': ([21], [21, 15])}
 
 	def __init__(self, start_time, end_time, family):
+		""" Init function, set up all the object data memebers """
+
 		if start_time[-2:].upper() == "PM":
 			self.start_time = int(start_time[:-5]) + 12
 		else:
@@ -22,18 +24,22 @@ class Babysitter:
 		self.family = family.upper()
 
 	def is_PM(self, time):
+		""" Return True if the given time is in the PM, else return False """
 		if time <= 24 and time >= 17: return True
 		return False
 
 	def is_start_time_valid(self):
+		""" Verify if the start time of the object is valid """
 		return self.start_time >= 17 or self.start_time <= 4
 		
 	def is_end_time_valid(self):
+		""" Verify if the the end time of object is valid """
 		if self.end_time == 4 and self.end_time_has_minutes:
 			return False
 		return self.end_time >= 17 or self.end_time <= 4
 
 	def is_start_before_end(self, start, end):
+		""" Check if the start time is before the ene time, given in the params """
 		if not self.is_PM(end) and self.is_PM(start):
 			return True
 		elif not self.is_PM(start) and self.is_PM(end):
@@ -45,11 +51,13 @@ class Babysitter:
 		return False
 
 	def is_family_valid(self):
+		""" Verify that the entered family name is valid """
 		return self.family == "A" \
 			or self.family == "B" \
 			or self.family == "C"	
 
 	def calculate_num_hrs(self, start, end):
+		""" Calculate the number of between the start and end params"""
 		if end > start:
 			return end - start
 		if not self.is_PM(end) and self.is_PM(start):
@@ -57,6 +65,7 @@ class Babysitter:
 		return 0
 
 	def is_valid_input(self):
+		""" Test all inputs to class to make sure they are valid """
 		return self.is_start_time_valid() and \
 			   self.is_end_time_valid() and \
 			   self.is_start_before_end(self.start_time, self.end_time) and \
