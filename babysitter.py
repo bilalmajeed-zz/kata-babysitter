@@ -14,6 +14,11 @@ class Babysitter:
 		else:
 			self.end_time = int(end_time[:-5])
 
+		if end_time[-4:-2] != "00":
+			self.end_time_has_minutes = True
+		else:
+			self.end_time_has_minutes = False
+
 		self.family = family.upper()
 
 	def is_PM(self, time):
@@ -24,6 +29,8 @@ class Babysitter:
 		return self.start_time >= 17 or self.start_time <= 4
 		
 	def is_end_time_valid(self):
+		if self.end_time == 4 and self.end_time_has_minutes:
+			return False
 		return self.end_time >= 17 or self.end_time <= 4
 
 	def is_start_before_end(self, start, end):
