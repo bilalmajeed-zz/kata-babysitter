@@ -1,6 +1,6 @@
 class Babysitter:
-	family_rates = [([23], [15, 20]), 
-					([22, 24], [12, 8, 16])]
+	family_rates = {'A': ([23], [15, 20]), 
+					'B': ([22, 24], [12, 8, 16])}
 
 	def __init__(self, start_time, end_time, family):
 		if start_time[-2:].upper() == "PM":
@@ -46,11 +46,9 @@ class Babysitter:
 		return 0
 
 	def calculate_rate(self):
-		if self.family == "A": rates = self.family_rates[0]
-		elif self.family == "B" : rates = self.family_rates[1]
-
 		total = 0;
 		done = 0
+		rates = self.family_rates[self.family]
 
 		for i in range(len(rates[0])):
 			if i == 0:
