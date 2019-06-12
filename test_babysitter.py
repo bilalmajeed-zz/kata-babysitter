@@ -47,3 +47,10 @@ class TestBabysitter(unittest.TestCase):
 
 		babysitter = Babysitter("8:00PM", "6:00PM", "d")
 		self.assertFalse(babysitter.is_family_valid())
+
+	def test_if_the_number_of_hrs_between_start_and_end_time_is_correct(self):
+		babysitter = Babysitter("7:00PM", "2:00AM", "a")
+		self.assertEqual(babysitter.calculate_num_hrs(), 7)
+
+		babysitter = Babysitter("7:00PM", "12:00PM", "a")
+		self.assertEqual(babysitter.calculate_num_hrs(), 5)
