@@ -100,3 +100,16 @@ class TestBabysitter(unittest.TestCase):
 
 		babysitter = Babysitter("6:30PM", "1:45AM", "c")
 		self.assertEqual(babysitter.calculate_rate(), 123)
+
+	def test_if_rates_are_only_be_calaculated_given_valid_inputs(self):
+		babysitter = Babysitter("6:30PM", "1:45AM", "c")
+		self.assertEqual(babysitter.calculate_rate(), 123)
+
+		babysitter = Babysitter("4:30PM", "1:45AM", "c")
+		self.assertEqual(babysitter.calculate_rate(), 0)
+
+		babysitter = Babysitter("6:30PM", "4:55AM", "a")
+		self.assertEqual(babysitter.calculate_rate(), 0)
+
+		babysitter = Babysitter("6:30PM", "1:45AM", "s")
+		self.assertEqual(babysitter.calculate_rate(), 0)

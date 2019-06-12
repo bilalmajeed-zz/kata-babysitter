@@ -53,7 +53,17 @@ class Babysitter:
 			return (24 - start) + end
 		return 0
 
+	def is_valid_input(self):
+		return self.is_start_time_valid() and \
+			   self.is_end_time_valid() and \
+			   self.is_start_before_end(self.start_time, self.end_time) and \
+			   self.is_family_valid()
+
 	def calculate_rate(self):
+		if not self.is_valid_input(): 
+			print("The given inputs are invalid, verify and try again")
+			return 0
+
 		total = 0;
 		done = 0
 		rates = self.family_rates[self.family]
