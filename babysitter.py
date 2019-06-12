@@ -34,9 +34,12 @@ class Babysitter:
 		return self.end_time >= 17 or self.end_time <= 4
 
 	def is_start_before_end(self, start, end):
-		if end > start:
-			return True
 		if not self.is_PM(end) and self.is_PM(start):
+			return True
+		elif not self.is_PM(start) and self.is_PM(end):
+			return False
+
+		if end > start:
 			return True
 		
 		return False
