@@ -64,7 +64,6 @@ class Babysitter:
 
 	def calculate_rate(self):
 		if not self.is_valid_input(): 
-			print("The given inputs are invalid, verify and try again")
 			return 0
 
 		total = 0;
@@ -94,3 +93,32 @@ class Babysitter:
 		total += hours * rates[1][-1]
 
 		return total
+
+if __name__ == '__main__':
+	import argparse
+
+	parser = argparse.ArgumentParser(description='Calculate the pay rate of a babysitter \
+									based on their start and end times and the specific \
+									family to babysit')
+	parser.add_argument("start_time", type=str)
+	parser.add_argument("end_time", type=str)
+	parser.add_argument("family", type=str)
+	args = parser.parse_args()
+
+	babysitter = Babysitter(args.start_time, args.end_time, args.family)
+	pay = babysitter.calculate_rate()
+
+	if pay == 0:
+		print("""
+		The given inputs were invalid
+		
+		Expected format: 
+		python babysitter.py START_TIME END_TIME FAMILY
+
+		START_TIME \t Should be between '5:00PM' and '4:00AM'
+		END_TIME \t Should be between '5:00PM' and '4:00AM'
+		FAMILY \t\t Should be either 'A', 'B', or 'C'
+		""")
+	else:
+		print("To babysit for family {} if you start at {} and end at {}, you should get paid ${}" \
+			.format(args.family.upper(), args.start_time, args.end_time, pay))
