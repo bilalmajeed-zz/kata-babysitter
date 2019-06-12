@@ -24,10 +24,10 @@ class Babysitter:
 	def is_end_time_valid(self):
 		return self.end_time >= 17 or self.end_time <= 4
 
-	def is_start_before_end(self):
-		if self.end_time > self.start_time:
+	def is_start_before_end(self, start, end):
+		if end > start:
 			return True
-		if not self.is_PM(self.end_time) and self.is_PM(self.start_time):
+		if not self.is_PM(end) and self.is_PM(start):
 			return True
 		
 		return False
@@ -51,7 +51,10 @@ class Babysitter:
 
 		for i in range(len(rates[0])):
 			if i == 0:
-				hours = self.calculate_num_hrs(self.start_time, rates[0][i])
+				if self.is_start_before_end(rates[0][i], self.end_time):
+					hours = self.calculate_num_hrs(self.start_time, rates[0][i])
+				else: 
+					hours = self.calculate_num_hrs(self.start_time, self.end_time)
 				total += hours * rates[1][i]
 		
 		hours = self.calculate_num_hrs(rates[0][-1], self.end_time)

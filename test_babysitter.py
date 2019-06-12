@@ -24,16 +24,16 @@ class TestBabysitter(unittest.TestCase):
 
 	def test_start_time_is_before_end_time(self):
 		babysitter = Babysitter("6:00PM", "12:00PM", "a")
-		self.assertTrue(babysitter.is_start_before_end())
+		self.assertTrue(babysitter.is_start_before_end(18, 24))
 		
 		babysitter = Babysitter("1:00AM", "3:00AM", "a")
-		self.assertTrue(babysitter.is_start_before_end())
+		self.assertTrue(babysitter.is_start_before_end(1, 3))
 		
 		babysitter = Babysitter("6:00PM", "3:00AM", "a")
-		self.assertTrue(babysitter.is_start_before_end())
+		self.assertTrue(babysitter.is_start_before_end(18, 3))
 
 		babysitter = Babysitter("8:00PM", "6:00PM", "a")
-		self.assertFalse(babysitter.is_start_before_end())
+		self.assertFalse(babysitter.is_start_before_end(20, 18))
 
 	def test_family_name_is_valid(self):
 		babysitter = Babysitter("8:00PM", "6:00PM", "a")
@@ -61,3 +61,6 @@ class TestBabysitter(unittest.TestCase):
 
 		babysitter = Babysitter("7:00PM", "2:00AM", "a")
 		self.assertEqual(babysitter.calculate_rate(), 120)
+
+		babysitter = Babysitter("7:00PM", "10:00PM", "a")
+		self.assertEqual(babysitter.calculate_rate(), 45)
