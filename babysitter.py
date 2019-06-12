@@ -10,7 +10,7 @@ class Babysitter:
 		else:
 			self.end_time = int(end_time[:-5])
 
-		self.family = family.upper
+		self.family = family.upper()
 
 	def is_start_time_valid(self):
 		return self.start_time >= 17 or self.start_time <= 4
@@ -27,3 +27,7 @@ class Babysitter:
 				return True
 		return False
 
+	def is_family_valid(self):
+		return self.family.upper() == "A" \
+			or self.family.upper() == "B" \
+			or self.family.upper() == "C"

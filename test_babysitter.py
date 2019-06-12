@@ -34,3 +34,16 @@ class TestBabysitter(unittest.TestCase):
 
 		babysitter = Babysitter("8:00PM", "6:00PM", "a")
 		self.assertFalse(babysitter.is_start_before_end())
+
+	def test_family_name_is_valid(self):
+		babysitter = Babysitter("8:00PM", "6:00PM", "a")
+		self.assertTrue(babysitter.is_family_valid())
+
+		babysitter = Babysitter("8:00PM", "6:00PM", "b")
+		self.assertTrue(babysitter.is_family_valid())
+
+		babysitter = Babysitter("8:00PM", "6:00PM", "c")
+		self.assertTrue(babysitter.is_family_valid())
+
+		babysitter = Babysitter("8:00PM", "6:00PM", "d")
+		self.assertFalse(babysitter.is_family_valid())
