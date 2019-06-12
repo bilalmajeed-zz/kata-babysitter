@@ -1,6 +1,7 @@
 class Babysitter:
 	family_rates = {'A': ([23], [15, 20]), 
-					'B': ([22, 24], [12, 8, 16])}
+					'B': ([22, 24], [12, 8, 16]),
+					'C': ([21], [21, 15])}
 
 	def __init__(self, start_time, end_time, family):
 		if start_time[-2:].upper() == "PM":
