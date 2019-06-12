@@ -116,3 +116,6 @@ class TestBabysitter(unittest.TestCase):
 
 		babysitter = Babysitter("6:30PM", "1:45AM", "s")
 		self.assertEqual(babysitter.calculate_rate(), 0)
+
+		babysitter = Babysitter("1:00AM", "11:00PM", "a")
+		self.assertEqual(babysitter.calculate_rate(), 0)
