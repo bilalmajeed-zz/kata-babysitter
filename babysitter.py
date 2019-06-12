@@ -35,8 +35,8 @@ class Babysitter:
 			or self.family.upper() == "B" \
 			or self.family.upper() == "C"	
 
-	def calculate_num_hrs(self):
-		if self.end_time > self.start_time:
-			return self.end_time - self.start_time
-		if not self.is_PM(self.end_time) and self.is_PM(self.start_time):
-			return (24 - self.start_time) + self.end_time
+	def calculate_num_hrs(self, start, end):
+		if end > start:
+			return end - start
+		if not self.is_PM(end) and self.is_PM(start):
+			return (24 - start) + end
